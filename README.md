@@ -11,11 +11,11 @@ Before you start, ensure you have the following installed on your machine:
 
 1. In the root directory of the project, create a .env file. This file contains environment variables used to configure your application.
    
-MONGO_URL=mongodb+srv://<username>:<password>@cluster0.mongodb.net/to-do?retryWrites=true&w=majority&appName=Cluster0
-ACCESS_TOKEN_SECRET=<your-access-token-secret>
-ACCESS_TOKEN_EXPIRY=1d
-REFRESH_TOKEN_SECRET=<your-refresh-token-secret>
-REFRESH_TOKEN_EXPIRY=10d
+MONGO_URL=mongodb+srv://<username>:<password>@cluster0.mongodb.net/to-do?retryWrites=true&w=majority&appName=Cluster0,
+ACCESS_TOKEN_SECRET=<your-access-token-secret>,
+ACCESS_TOKEN_EXPIRY=1d,
+REFRESH_TOKEN_SECRET=<your-refresh-token-secret>,
+REFRESH_TOKEN_EXPIRY=10d,
 PORT=3000
 
 2. Install dependencies:
