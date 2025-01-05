@@ -43,7 +43,7 @@ const userSchema = new mongoose.Schema<IUser>({
 });
 
 
-
+// hash the password before saving if password not modified return
 userSchema.pre<IUser>('save', async function (next) {
 
     if (!this.isModified('password')) return;
@@ -54,6 +54,7 @@ userSchema.pre<IUser>('save', async function (next) {
 
 })
 
+//check if the hashed password is correct
 userSchema.methods.comparePassword = async function (password: string) {
 
     try {
@@ -66,6 +67,7 @@ userSchema.methods.comparePassword = async function (password: string) {
 
 }
 
+//generates access token
 userSchema.methods.generateAccessToken = function () {
     //  console.log(process.env)
 
@@ -83,6 +85,7 @@ userSchema.methods.generateAccessToken = function () {
         }
     )
 }
+//generates refresh token
 
 userSchema.methods.generateRefreshToken = function () {
     if (!process.env.REFRESH_TOKEN_SECRET) {

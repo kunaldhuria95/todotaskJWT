@@ -4,7 +4,7 @@ import { NotFoundError } from "../errors";
 import Task from "../models/Task";
 import { checkPermission } from "../utils/checkPermission";
 
-//create To-Do Task with title,description and status in req.body status is optional for authenticated user
+//create To-Do Task with title,description and status(optional) in req.body for authenticated user
 const createTask = asyncHandler(async (req: Request, res: Response) => {
 
     const { title, description, status } = req.body;
@@ -45,7 +45,7 @@ const getSingleTask = asyncHandler(async (req: Request, res: Response, next: Nex
     if (!task) {
         throw new NotFoundError(`No task found with ${taskId}`)
     }
-    // check if the logged-in user is authorized to view the resources
+    // check if the logged-in user is authorized to view the resource
     checkPermission(req.user._id, task.user)
     res.status(200).json({ task })
 })
@@ -59,7 +59,7 @@ const updateTask = asyncHandler(async (req: Request, res: Response) => {
     if (!task) {
         throw new NotFoundError(`No task with ${taskId}`)
     }
-    // check if the logged in user is authorzied to update the resources
+    // check if the logged in user is authorized to update the resource
     checkPermission(req.user._id, task.user)
     task.status = status;
     await task.save({ validateBeforeSave: true })
@@ -68,6 +68,7 @@ const updateTask = asyncHandler(async (req: Request, res: Response) => {
 
 })
 
+//deletes a task only authorized user can delete the task
 const deleteTask = asyncHandler(async (req: Request, res: Response) => {
     const { id: taskId } = req.params;
     const task = await Task.findOne({ _id: taskId })

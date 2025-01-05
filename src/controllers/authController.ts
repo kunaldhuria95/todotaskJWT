@@ -53,7 +53,7 @@ const register = asyncHandler(async (req: Request, res: Response, next: NextFunc
 
 })
 
-//login with email and password, attache cookies(access and refresh token) to response
+//login with email and password, attach cookies(access and refresh token) to response
 const login = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body;
 
